@@ -1,10 +1,13 @@
 // Función principal para validar el formulario
 function validarFormulario() {
+  debugger;
   // Obtener valores de los campos
   const username = document.getElementById("username").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
   const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+  console.log('Datos en valida formulario:', { username, email, password, confirmPassword });
 
   // Variables para control de errores
   let usernameValido = false;
@@ -136,3 +139,89 @@ document.addEventListener('DOMContentLoaded', function() {
   // Añadir event listener para eliminar usuario
   document.getElementById('eliminar').addEventListener('click', eliminarUsuario);
 });
+
+function obtenerUsuarioLogueado() {
+  return fetch('/check-auth')
+    .then(response => response.json())
+    .then(data => data.username)
+    .catch(error => {
+      console.error('Error al obtener usuario logueado:', error);
+      return null;
+    });
+}
+
+function modificarUsuario() {
+  if (validarFormulario()) {
+    obtenerUsuarioLogueado().then(usuarioLogueado => {
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      console.log('Datos a enviar:', { username, email, password });
+
+      if (usuarioLogueado === username) {
+        fetch('/modificar-usuario', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ username, email, password })
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(message => {
+          document.getElementById('mensaje').textContent = message;
+          document.getElementById('mensaje').style.color = 'green';
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          document.getElementById('mensaje').textContent = 'Error al modificar el usuario: ' + error.message;
+          document.getElementById('mensaje').style.color = 'red';
+        });
+      } else {
+        document.getElementById('mensaje').textContent = 'No puedes modificar un usuario diferente al que está logueado.';
+        document.getElementById('mensaje').style.color = 'red';
+      }
+    });
+  }
+}
+
+document.getElementById('modificar').addEventListener('click', modificarUsuario);
+
+function enviarFormulario(event) {
+  event.preventDefault();
+  if (validarFormulario()) {
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    fetch('/registro', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password })
+    })
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(text => { throw new Error(text) });
+      }
+      return response.text();
+    })
+    .then(message => {
+      document.getElementById('mensaje').textContent = message;
+      document.getElementById('mensaje').style.color = 'green';
+    })
+    .catch(error => {
+      document.getElementById('mensaje').textContent = error.message;
+      document.getElementById('mensaje').style.color = 'red';
+    });
+  }
+}
+
+document.getElementById('registroForm').addEventListener('submit', enviarFormulario);

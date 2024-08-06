@@ -3,7 +3,6 @@ async function checkAuthentication() {
     try {
         const response = await fetch('/check-auth');
         if (response.status === 200) {
-            debugger;
             const user = await response.json();
             console.log(user);
             document.getElementById('user-info').innerText = `Usuario conectado: ${user.username}`;
@@ -19,7 +18,7 @@ async function checkAuthentication() {
 
 // Función para manejar el logout
 async function handleLogout() {
-    try {
+    try {   
         const response = await fetch('/logout', {
             method: 'POST',
             credentials: 'same-origin'
