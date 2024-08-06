@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding-top: 60px; /* Añade un padding-top para evitar que el contenido se oculte detrás del header */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Cambia a column para apilar los elementos verticalmente */
+}
+
+header {
+  position: fixed;
+  top: 0; /* Asegura que el header esté en la parte superior */
+  left: 0; /* Asegura que el header esté alineado a la izquierda */
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+}
+
+#user-info {
+  font-weight: bold;
+}
+
+.container {
+  background-color: rgb(189, 187, 187);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 500px; /* Aumenta el ancho del contenedor del formulario */
+  margin: auto; /* Centra el contenedor horizontalmente */
+}
+
+.form-group {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: calc(100% - 12px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; /* Añadir un margen entre los botones */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+  display: none;
+}
+
+/* Alinea los botones en línea */
+button-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Asegura que los botones se ajusten si no caben en una línea */
+}
+

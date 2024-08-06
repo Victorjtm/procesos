@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Login</title>
+    <link rel="stylesheet" href="/login.css" />
+  </head>
+  <body>
+    <header>
+      <div id="user-info">
+        <!-- Aquí se mostrará el nombre del usuario si está logueado -->
+        <h1>nombre</h1>
+      </div>
+    </header>
+    <div class="container">
+      <h2>Formulario de Login</h2>
+      <form id="loginForm" action="/login" method="post" onsubmit="return validarLogin()">
+        <div class="form-group">
+          <label for="username">Nombre de Usuario:</label>
+          <input type="text" id="username" name="username" required />
+          <small class="error" id="usernameError"></small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+          <small class="error" id="passwordError"></small>
+        </div>
+        <button type="submit">Login</button>
+        <button type="button" class="cancel" onclick="window.location.href='/'">Cancelar</button> <!-- Botón Cancelar añadido -->
+      </form>
+    </div>
+    <script src="login.js"></script>
+    <script src="checkUser.js"></script> <!-- Incluye el nuevo archivo JavaScript -->
+  </body>
+</html>
+

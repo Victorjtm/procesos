@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="/registro.css" />
+    <style>
+      /* Estilos para los botones */
+      .form-group button {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="user-info">
+        <h1>nombre</h1>
+        <!-- Aquí se mostrará el nombre del usuario si está logueado -->
+      </div>
+    </header>
+    <div class="container">
+      <h2>Formulario de Registro</h2>
+      <form id="registroForm" action="/registro" method="post" onsubmit="return validarFormulario()">
+        <div class="form-group">
+          <label for="username">Nombre de Usuario:</label>
+          <input type="text" id="username" name="username" />
+          <small class="error" id="usernameError"></small>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <small class="error" id="emailError"></small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" />
+          <small class="error" id="passwordError"></small>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirmar Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+          />
+          <small class="error" id="confirmPasswordError"></small>
+        </div>
+        <!-- Nueva celda para mensajes -->
+        <div class="form-group" id="mensaje"></div>
+        <button type="submit">Registrar</button>
+        <button type="button" id="modificar">Modificar</button>
+        <button type="button" id="eliminar">Eliminar</button> <!-- Botón Eliminar añadido -->
+        <button type="button" onclick="window.location.href='/';">Cancelar</button> <!-- Botón Cancelar añadido -->
+      </form>
+    </div>
+    <script src="registro.js"></script>
+    <script src="checkUser.js"></script> <!-- Incluye el nuevo archivo JavaScript -->
+  </body>
+</html>
+
+
+
+
