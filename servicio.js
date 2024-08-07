@@ -95,19 +95,19 @@ app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).send("Faltan datos en la solicitud.");
+      return res.status(400).json({ message: "Faltan datos en la solicitud." });
   }
 
   db.get("SELECT * FROM users WHERE username = ?", [username], async (err, row) => {
-    if (err) {
-      res.status(500).send("Error al buscar el usuario.");
-    } else if (row && await bcrypt.compare(password, row.password)) {
-      const token = jwt.sign({ username: row.username }, secretKey, { expiresIn: '1h' });
-      res.cookie('token', token, { httpOnly: true });
-      res.redirect('/');
-    } else {
-      res.status(401).send("Credenciales inválidas.");
-    }
+      if (err) {
+          res.status(500).json({ message: "Error al buscar el usuario." });
+      } else if (row && await bcrypt.compare(password, row.password)) {
+          const token = jwt.sign({ username: row.username }, secretKey, { expiresIn: '1h' });
+          res.cookie('token', token, { httpOnly: true });
+          res.json({ success: true, message: "Login exitoso" });
+      } else {
+          res.status(401).json({ message: "Credenciales inválidas." });
+      }
   });
 });
 

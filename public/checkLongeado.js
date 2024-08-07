@@ -1,18 +1,24 @@
+// checkLongeado.js
+
 // Función para comprobar si el usuario está autenticado
 async function checkAuthentication() {
     try {
         const response = await fetch('/check-auth');
+        const userInfo = document.getElementById('user-info');
+        const logoutButton = document.getElementById('logout');
+
         if (response.status === 200) {
             const user = await response.json();
-            console.log(user);
-            document.getElementById('user-info').innerText = `Usuario conectado: ${user.username}`;
-            document.getElementById('logout').style.display = 'block';
+            userInfo.innerText = `Usuario conectado: ${user.username}`;
+            logoutButton.style.display = 'inline-block';
         } else {
-            document.getElementById('user-info').innerHTML = '<a href="/login">Login</a>';
+            userInfo.innerText = 'Ningún usuario conectado';
+            logoutButton.style.display = 'none';
         }
     } catch (error) {
         console.error('Error checking authentication:', error);
-        document.getElementById('user-info').innerHTML = '<a href="/login">Login</a>';
+        document.getElementById('user-info').innerText = 'Ningún usuario conectado';
+        document.getElementById('logout').style.display = 'none';
     }
 }
 
@@ -24,7 +30,7 @@ async function handleLogout() {
             credentials: 'same-origin'
         });
         if (response.ok) {
-            document.getElementById('user-info').innerHTML = '<a href="/login">Login</a>';
+            document.getElementById('user-info').innerText = 'Ningún usuario conectado';
             document.getElementById('logout').style.display = 'none';
         }
     } catch (error) {

@@ -15,7 +15,9 @@
     </header>
     <div class="container">
       <h2>Formulario de Login</h2>
-      <form id="loginForm" action="/login" method="post" onsubmit="return validarLogin()">
+      <!-- Añadimos aquí la celda para mensajes -->
+      <div id="message-box" class="message"></div>
+      <form id="loginForm" action="/login" method="post">
         <div class="form-group">
           <label for="username">Nombre de Usuario:</label>
           <input type="text" id="username" name="username" required />
@@ -27,11 +29,11 @@
           <small class="error" id="passwordError"></small>
         </div>
         <button type="submit">Login</button>
-        <button type="button" class="cancel" onclick="window.location.href='/'">Cancelar</button> <!-- Botón Cancelar añadido -->
+        <button type="button" class="cancel" onclick="window.location.href='/'">Cancelar</button>
       </form>
     </div>
     <script src="/login.js"></script>
-    <script src="/checkUser.js"></script> <!-- Incluye el nuevo archivo JavaScript -->
+    <script src="/checkUser.js"></script>
   </body>
 </html>
 
