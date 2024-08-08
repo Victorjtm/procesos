@@ -84,7 +84,7 @@ body {
   }
   
   .error {
-    color: red;
+    color: rgb(73, 2, 2);
     font-size: 12px;
     display: none;
   }

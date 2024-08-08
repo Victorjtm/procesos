@@ -145,7 +145,7 @@ function obtenerUsuarioLogueado() {
     .then(response => response.json())
     .then(data => data.username)
     .catch(error => {
-      console.error('Error al obtener usuario logueado:', error);
+      console.error('Ningún usuario conectado:', error);
       return null;
     });
 }

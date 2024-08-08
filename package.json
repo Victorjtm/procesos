@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon servicio.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "nodemon": "^2.0.15"
   }
 }
